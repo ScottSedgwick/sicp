@@ -1,0 +1,218 @@
+; Name: Scott Sedgwick
+; TA Name: ?
+; SICP Project 0
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; PART 2
+;;;
+;;; The following test cases explore the evaluation of simple expressions.
+;;;
+
+-37
+
+;Value: -37
+
+(* 3 4)
+
+;Value: 12
+
+(> 10 9.7)
+
+;Value: #t
+
+(- (if (> 3 4) 
+        7
+       10) 
+   (/ 16 10)
+)
+
+;Value: 42/5
+
+(* (- 25 10)
+   (+ 6 3))
+
+;Value: 135
+
++
+
+;Value 2: #[arity-dispatched-procedure 2]
+
+(define double (lambda (x) (* 2 x)))
+
+;Value: double
+
+double
+
+;Value 3: #[compound-procedure 3 double]
+
+(define c 4)
+
+;Value: c
+
+c
+
+;Value: 4
+
+(double c)
+
+;Value: 8
+
+c
+
+;Value: 4
+
+(double (double (+ c 5)))
+
+;Value: 36
+
+(define times-2 double)
+
+;Value: times-2
+
+(times-2 c)
+
+;Value: 8
+
+(define d c)
+
+;Value: d
+
+(= c d)
+
+;Value: #t
+
+(cond ((>= c 2) d)
+      ((= c (- d 5)) (+ c d))
+      (else (abs (- c d))))
+
+;Value: 4
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; PART 3
+;;;
+;;; This is an edwin transcript of the commands specified in Part 3.
+;;;
+
+1 ]=> (define abs
+(lambda (a)
+(if (> a 0)
+a 
+(- a))))
+
+;Value: abs
+
+; In my edwin (in an OSX shell) there was no difference between C-j and return.
+; However, I use Sublime Text and the REPL plugin in that, so this is how I 
+; would format my version of the abs function:
+
+(define abs 
+	(lambda (a)
+		(if (> a 0)
+			a
+			(- a)
+		)
+	)
+)
+
+; Though I would tidy it up with some syntactic sugar:
+
+(define (abs a)
+	(if (> a 0)
+		a
+		(- a)
+	)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; PART 4
+;;;
+;;; Printing from the terminal.  I'm using Sublime Text 3, and after
+;;; installing the SublimePrint package, it does an excellent job.
+;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; PART 5
+;;;
+;;; Administrative questions.
+;;;
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 1. According to the Don't Panic manual, how do you invoke the stepper? What is the difference between the
+;;; stepper and the debugger?
+;;; 
+;;; You invoke a stepper in Edwin by typeing M­-s. The difference between the debugger and the stepper is
+;;; primarily direction.  With the debugger, execution halts after an error has occurred, and you try to
+;;; figure out what happened.  With a stepper, you step through normal execution and inspect values of
+;;; variables and program flow before the error takes place.
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 2. According to the Guide to MIT Scheme, which of the words in the scheme expressions you evaluated in 
+;;; Part 2 above are “special forms”?
+;;; 
+;;; if, cond lambda and define are the special forms used in Part 2. Another special form we have seen is 
+;;; lexical scoping.
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 3. Referring to the course policy on collaboration, describe the policy on the use of “bibles.”
+;;; 
+;;; There is no reference to the concept of "bibles" in the collaboration policy. It does stress the
+;;; requirement to write all your own work and never to copy from others. As such, I suspect the policy
+;;; would be along the lines of "use them to learn things, but never copy from them".
+;;;
+;;; If, however, you are actually referring to the section on 6.001 Bibles in the Syllabus section of the
+;;; course web page, then it says:
+;;;
+;;; "6.001 Bibles
+;;; Collections of past 6.001 homework assignments and solutions are available in various living groups. 
+;;; A database of 6.001 problem sets and solutions is also available on the MIT server. This material must 
+;;; be used very carefully. It is legitimate to use bibles as a source of supplementary problems for 
+;;; additional practice, to try to test and increase your understanding of the material.
+;;; 
+;;; It is not legitimate to use bibles a source of code or solutions to any of this year's assignments. 
+;;; Doing so is not only likely to hinder your learning the material, it is intellectually dishonest and 
+;;; a form of cheating. In recent terms several students made use of bibles in this way, resulting in 
+;;; disciplinary action taken against them. Do not copy from bibles. Solve the problems on your own, work 
+;;; on the projects in an appropriate fashion consistent with the collaboration policy, or get assistance 
+;;; from the teaching staff."
+;;;
+;;; Which amounts to: you can read it, but you can't copy it.
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 4. List three people with whom you might collaborate on projects this term. You are not required to 
+;;; actively collaborate with these people, we just want you to start thinking about what collaboration means 
+;;; in this course.
+;;; 
+;;; David Tchepak, Riaan Rottier, Anthony Egerton.  But I won't, I'm far too competetive and don't like
+;;; having to talk to people anyway.
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 5. Locate the list of announcements for the class. What do these announcements say about recitation 
+;;; attendance during the first week of classes?
+;;; 
+;;; "During the first lecture you will be filling out a form, which we will use to assign you to a recitation 
+;;; section. In order to keep sections balanced, we ask you to attend that section. If for some reason you 
+;;; cannot, you must contact the course secretary by e-mail, asking to switch sections. She will try to find a 
+;;; new section to accommodate you, but because of the need to keep sections reasonably balanced in size, she 
+;;; may not always be able to do so. Please do not contact her until after the first day of recitations."
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 6. What are the three methods for controlling complexity described in the learning objectives section of 
+;;; the course objectives and outcomes? List one example from each category.
+;;; 
+;;; a) Building Abstractions
+;;; b) Controlling Interaction through Conventional Interfaces
+;;; c) Designing New Languages
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 7. What does the MIT Scheme Reference Manual say about treatment of upper and lower case in expressions?
+;;; 
+;;; The manual tells us that Scheme is a case-insensitive language, but it does not make any reference to
+;;; the convention expected (camel case, snake case, etc.). Given the convention to use non-alphabetic 
+;;; characters (?, ! and -> are mentioned) I will assume lower case snake case with symbols - at least 
+;;; until someone tells me otherwise.
+
+;;;-----------------------------------------------------------------------------------------------------------
+;;; 8. What are the Edwin commands for creating a new file, and for saving a file? What is the difference 
+;;; between the *scheme* buffer and the *transcript* buffer?
+;;; 
+;;; Honestly, I skipped that. Not going to be using Edwin, don't care.
