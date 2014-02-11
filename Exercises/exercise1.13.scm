@@ -39,4 +39,4 @@
 
 (define matches (map (lambda (lst) (= (first lst) (second lst))) fibs))
 
-(define v-test (all matches))
+(define (v-test) (all matches))
