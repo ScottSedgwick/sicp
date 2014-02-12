@@ -32,7 +32,14 @@
 (define (all lst)
   (reduce (lambda (a b) (and a b)) #t lst))
 
-(define values '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
+(define (makelist start end)
+  (define (iter current)
+    (if (= current end)
+      '()
+      (cons current (iter (+ current 1)))))
+  (iter start))
+
+(define values (makelist 1 20))
 (define fib1s (map fib1 values))
 (define fib2s (map fib2 values))
 (define fibs (zip fib1s fib2s))
