@@ -1,8 +1,7 @@
 (load "check.scm")
 
 (define (fib1 n)
-  (cond ((= n 0) 0)
-        ((= n 1) 1)
+  (cond ((< n 2) n)
         (else (+ (fib1 (- n 1)) (fib1 (- n 2))))))
 
 (define (fib1-test)
